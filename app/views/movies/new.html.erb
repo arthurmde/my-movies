@@ -1,0 +1,22 @@
+<h1 class="title">Create a new movie</h1>
+
+<%= form_for @movie, url: {controller: 'movies', action: 'create'} do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :release_date %>
+    <%= f.date_select :release_date,
+         start_year: 1900,
+         order: [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

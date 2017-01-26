@@ -1,0 +1,18 @@
+<h1 class="title">Movies</h1>
+
+<table id="movies">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Release</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= link_to(movie.title, "/movies/#{movie.id}")   %></td>
+        <td><%= movie.release_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
