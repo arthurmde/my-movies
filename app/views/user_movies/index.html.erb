@@ -1,0 +1,11 @@
+<h1> My Movies </h1>
+
+<ul class="movies">
+  <% @classifications.each do |classification| %>
+    <li>
+      <%= link_to(classification.movie.title,
+      "/movies/#{classification.movie.id}") %> -
+      <b><%= classification.score %></b>
+    </li>
+  <% end %>
+</ul>

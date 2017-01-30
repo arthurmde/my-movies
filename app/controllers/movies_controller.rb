@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update]
+  before_action :set_movie, only: [:show, :edit, :update, :create_classification]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -13,8 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie.update(movie_params)
-    if @movie.save
+    if @movie.update(movie_params)
       redirect_to action: :show, id: @movie.id
     else
       render :edit, id: @movie.id
@@ -34,10 +33,26 @@ class MoviesController < ApplicationController
     end
   end
 
+  def create_classification
+    classification = Classification.new(classification_params)
+    classification.user = current_user
+    classification.movie = @movie
+    if classification.save
+      flash[:notice] = "Score updated! "
+    else
+      flash[:alert] = "Could not update score. The score must be a number (0 - 10)"
+    end
+    redirect_to action: :show, id: @movie.id
+  end
+
   private
 
   def movie_params
     params.require(:movie).permit(:title, :release_date, :description)
+  end
+
+  def classification_params
+    params.require(:classification).permit(:score)
   end
 
   def set_movie

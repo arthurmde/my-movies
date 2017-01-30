@@ -5,6 +5,7 @@
     <tr>
       <th>Title</th>
       <th>Release</th>
+      <th>Average Score</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
       <tr>
         <td><%= link_to(movie.title, "/movies/#{movie.id}")   %></td>
         <td><%= movie.release_date %></td>
+        <td><%= movie.average_score %></td>
       </tr>
     <% end %>
   </tbody>
