@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="header">
+      <ul class="menu">
+        <li>
+          <h1 class="app-title">
+            <%= link_to("MyMovies", "/") %>
+          </h1>
+        </li>
+        <li class="menu-item"><%= link_to("Movies", "/movies") %></li>
+        <li class="menu-item"><%= link_to("Actors", "/actors") %></li>
+        <li class="menu-item"><%= link_to("Directors", "/directors") %></li>
+      </ul>
+
+    </div>
+    <div class="main">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert alert-info" %>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
