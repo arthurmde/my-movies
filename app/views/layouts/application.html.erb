@@ -19,6 +19,18 @@
         <li class="menu-item"><%= link_to("Movies", "/movies") %></li>
         <li class="menu-item"><%= link_to("Actors", "/actors") %></li>
         <li class="menu-item"><%= link_to("Directors", "/directors") %></li>
+        <% if user_signed_in? %>
+          <li class="menu-item sign-out">
+            <%= link_to("Sign Out", "/users/sign_out", method: :delete) %>
+          </li>
+        <% else %>
+          <li class="menu-item sign-in">
+            <%= link_to("Sign In", "/users/sign_in") %>
+          </li>
+          <li class="menu-item sign-up">
+            <%= link_to("Sign Up", "/users/sign_up") %>
+          </li>
+        <% end %>
       </ul>
 
     </div>

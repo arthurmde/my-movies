@@ -1,5 +1,6 @@
 class DirectorsController < ApplicationController
   before_action :set_director, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /directors
   # GET /directors.json
